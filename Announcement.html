@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annoucement</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<!-- Header -->
+<div class="headline">
+    <h4>Lawa Village Service Portal</h4>
+
+    <div class="tools-container">
+
+        
+            <!-- Google Translator -->
+     <div id="google_translate_element" style="display:none;"></div>
+
+    <div class="language-menu">
+
+    <img src="translate-icon.png"
+         class="language-icon"
+         width="32"
+         height="32"
+         alt="Language"
+         draggable="false"
+         onclick="toggleLanguage()">
+
+    <div id="languageContent" class="dropdown-language">
+
+        <a href="#" onclick="translateLanguage('en')">English</a>
+        <a href="#" onclick="translateLanguage('hi')">Hindi</a>
+        <a href="#" onclick="translateLanguage('mr')">Marathi</a>
+
+    </div>
+
+</div>
+
+       <div class="accessibility-menu">
+
+        <img src="accessibility-icon.png"
+         height ="30px" width ="30px" alt="Accessibility" class ="accessibility-icon"
+         draggable="false"
+         onclick="toggleAccessibility()">
+
+    <div id="accessibilityPanel" class="accessibility-panel">
+        <h3>Accessibility Tools</h3>
+
+        <div class="tool-grid">
+            <button
+            onclick="toggleContrast()">High Contrast</button>
+            <button 
+            onclick="toggleDarkMode()">Dark Mode</button>
+
+            <button
+            onclick="increaseText()">Increase Text</button>
+            <button
+            onclick="decreaseText()">Decrease Text</button>
+            <button
+            onclick="toggleSpacing()">Text Spacing</button>
+            <button
+            onclick="resetAccessibility()">Reset</button>
+        </div>
+    </div>
+
+</div>
+
+    </div>
+</div>
+    <!-- Navigation -->
+    <ul class='Mylinks'>
+    <li><a href="index.html"><img src="support-icon.jpg" class ="symbol" width ="30px" height ="30px" draggable="false"></a></li>
+    <li class ="search-item">
+    <input type ="text" id ="searchBox" placeholder ="Search" class ="search-text"
+    onkeydown="if(event.key==='Enter') searchPage()">
+
+    <div id ="popupMessage" class ="popup-message">
+   <img src ="alert-icon.jpg" height="10px" width="10px"
+   draggable="false"> Please fill the search bar first
+    </div>
+
+    <div class="category-dropdown">
+
+    <button class="category-btn">All Categories ▼</button>
+
+    <div class="category-content">
+        <a href="complaint.html">Complaint Portal</a>
+        <a href="Project.html">Projects</a>
+        <a href="Announcement.html">Anouncement</a>
+    </div>
+</div>
+
+    <button class ="search-btn"
+    onclick="searchPage()">Search</button></li>
+    
+    <li class ="menu">
+    <img src="menu-icon.jpg" width="40px" height ="40px" alt="Menu" class="menu-icon" draggable="false" onclick="toggleMenu()">
+    <div id="menuContent" class="dropdown-menu">
+        
+        <a href="index.html">Home </a>
+        <a href="dashboard.html">Dashboard</a>
+  </li>
+
+ <li class ="user_id">
+    <img src="user-icon.jpg"
+     width="50px" 
+     height ="50px" 
+     alt="Menu" 
+     class="user-icon" 
+     draggable="false"
+     onclick="toggleUser()">
+    <div id="userContent" class="dropdown-user">
+        
+       <a href="index.html">Home</a>
+       <a href="admin_login.html">Admin login</a>
+
+  </li>
+
+  </ul>
+
+</div>
+
+<div class ="not_here">
+<p>VIllage Anouncements</p>
+<p>Will Be Available Soon !</p>
+<img src ="available-soon-banner.jpg" height="200px" width="300px"
+draggable="false">
+</script></div>
+
+<div class ='contact_info'>
+
+<div id ="ContactUS" class ="contact_head"><h3>Contact Information</h3></div>
+
+<p >
+    <b>Address :-</b> Gram Panchayat office Lawa,Lawa vilage, Nagpur, Maharashtra,India
+    <br><br>
+    <b>Pincode :-</b> 440023<br><br>
+
+     <b>Contact Number :- +91 XXXXX XXXXX</b><br><br>
+
+    <b>Email :- xxxxteam@gmail.com</b><br><br>
+
+<footer class = "foot">
+    © 2026 Lawa Gram Panchayat | Village Service Portal
+</footer>
+
+<script src="script.js"></script>
+
+<script>
+function toggleLanguage(){
+
+    document.getElementById("languageContent")
+            .classList.toggle("show-language");
+}
+
+document.addEventListener("click",function(e){
+
+    let language=document.querySelector(".language-menu");
+
+    if(language && !language.contains(e.target)){
+
+        document.getElementById("languageContent")
+                .classList.remove("show-language");
+    }
+
+});
+
+function translateLanguage(lang) {
+
+    let combo = document.querySelector(".goog-te-combo");
+
+    if (!combo) {
+        alert("Google Translator is not loaded yet.");
+        return;
+    }
+
+    combo.value = lang;
+    combo.dispatchEvent(new Event("change"));
+}
+</script>
+
+<script>
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+        {
+            pageLanguage: 'en',
+            includedLanguages: 'en,hi,mr'
+        },
+        'google_translate_element'
+    );
+}
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>

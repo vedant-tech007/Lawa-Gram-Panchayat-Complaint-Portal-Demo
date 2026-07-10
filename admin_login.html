@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+<style>
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Login box */
+form {
+    background: white;
+    padding: 30px;
+    width: 320px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Heading */
+form h2 {
+    margin-bottom: 20px;
+    color: #1f4037;
+}
+
+/* Input fields */
+form input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+}
+
+/* Focus effect */
+form input:focus {
+    border-color: #1f4037;
+    box-shadow: 0 0 5px rgba(31, 64, 55, 0.5);
+}
+
+/* Button */
+form button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: #1f4037;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Hover effect */
+form button:hover {
+    background: #145a32;
+}
+
+/* Error message */
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.staff_login{
+       color:#56736b;
+}
+
+.submit_button{
+
+    width:340px;
+}
+
+</style>
+
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body style ="background: linear-gradient(135deg, #1f4037, #99f2c8);">
+
+  <form onsubmit="return validateLogin(event)">
+    <h2 class ="staff_login">Staff login Page</h2>
+    <p style ="text-align: left;font-size: 12px;">Username</p>
+    <input type="text"
+       id="username"
+       name="username"
+       placeholder="Username"
+       style="width:250px; padding-right:40px;">
+
+<span id="userError" class="error"></span>
+<p style="text-align:left; font-size:12px;">Password</p>
+
+<div style="position:relative;">
+
+    <input type="password"
+           id="password"
+           name="password"
+           placeholder="Password"
+           style="width:250px; padding-right:40px;">
+
+</div>
+
+<span id="passError" class="error"></span>
+
+
+<p style="color:red; text-align:left; font-size:13px;">
+
+</p>
+
+    <button type="submit" class ="submit_button"
+    style="width:250px; padding-right:40px;">
+    Login</button>
+
+</form>
+
+
+    <script>
+function togglePassword() {
+    let pass = document.getElementById("password");
+    let icon = document.getElementById("toggleIcon");
+
+    if (pass.type === "password") {
+        pass.type = "text";
+       
+    } else {
+        pass.type = "password";
+     
+    }
+}
+
+function validateLogin(event) {
+
+    event.preventDefault();
+
+    let user = document.getElementById("username").value.trim();
+    let pass = document.getElementById("password").value.trim();
+
+    document.getElementById("userError").innerHTML = "";
+    document.getElementById("passError").innerHTML = "";
+
+    if (user === "") {
+        document.getElementById("userError").innerHTML = "Please enter username";
+        return false;
+    }
+
+    if (pass === "") {
+        document.getElementById("passError").innerHTML = "Please enter password";
+        return false;
+    }
+
+    if (user === "admin" && pass === "admin123") {
+
+        sessionStorage.setItem("loggedIn", "true");
+
+        window.location.href = "admin_home.html";
+    }
+    else {
+        document.getElementById("passError").innerHTML =
+            "Invalid username or password";
+    }
+
+    return false;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Homepage</title>
+   <link rel="stylesheet" href="style.css".>
+   <script>
+if (sessionStorage.getItem("loggedIn") !== "true") {
+    window.location.href = "admin_login.html";
+}
+</script>
+</head>
+
+<body>
+<!-- Header -->
+<div class="headline">
+    <h4>Lawa Village Service Portal</h4>
+
+    <div class="tools-container">
+
+            
+            <!-- Google Translator -->
+     <div id="google_translate_element" style="display:none;"></div>
+
+    <div class="language-menu">
+
+    <img src="translate-icon.png"
+         class="language-icon"
+         width="32"
+         height="32"
+         alt="Language"
+         draggable="false"
+         onclick="toggleLanguage()">
+
+    <div id="languageContent" class="dropdown-language">
+
+        <a href="#" onclick="translateLanguage('en')">English</a>
+        <a href="#" onclick="translateLanguage('hi')">Hindi</a>
+        <a href="#" onclick="translateLanguage('mr')">Marathi</a>
+
+    </div>
+
+</div>
+
+       <div class="accessibility-menu">
+
+        <img src="accessibility-icon.png"
+         height ="30px" 
+         width ="30px" 
+         alt="Accessibility" 
+         class ="accessibility-icon"
+         draggable="false"
+         onclick="toggleAccessibility()">
+
+    <div id="accessibilityPanel" class="accessibility-panel">
+        <h3>Accessibility Tools</h3>
+
+        <div class="tool-grid">
+            <button
+            onclick="toggleContrast()">High Contrast</button>
+            <button 
+            onclick="toggleDarkMode()">Dark Mode</button>
+
+            <button
+            onclick="increaseText()">Increase Text</button>
+            <button
+            onclick="decreaseText()">Decrease Text</button>
+            <button
+            onclick="toggleSpacing()">Text Spacing</button>
+            <button
+            onclick="resetAccessibility()">Reset</button>
+        </div>
+    </div>
+
+</div>
+
+    </div>
+</div>
+    <!-- Navigation -->
+    <ul class='Mylinks'>
+    <li><a href="index.html"><img src="support-icon.jpg" 
+         class ="symbol"
+         width ="30px"
+         height ="30px"
+         draggable ="false">
+        </a></li>
+
+    <li class ="search-item">
+    <input type ="text" id ="searchBox" placeholder ="Search" class ="search-text"
+    onkeydown="if(event.key==='Enter') searchPage()">
+
+    <div id="popupMessage" class="popup-message"></div>
+
+    <div class="category-dropdown">
+
+    <button class="category-btn">All Categories ▼</button>
+
+    <div class="category-content">
+        <a href="complaint.html">Complaint Portal</a>
+        <a href="Project.html">Projects</a>
+        <a href="Announcement.html">Anouncement</a>
+    </div>
+</div>
+
+    <button class ="search-btn"
+    onclick="searchPage()">Search</button></li>
+    
+    <li class ="menu">
+    <img src="Menu-icon.jpg" 
+    width="40px" 
+    height ="40px"
+    alt="Menu" 
+    class="menu-icon"
+    draggable="false"
+    onclick="toggleMenu()">
+    <div id="menuContent" class="dropdown-menu">
+        
+        <a href="#about_us">About Us</a>
+        <a href="#Staff_mem">Message for Staff</a>
+        <a href="dashboard.html">Dashboard</a>
+        
+  </li>
+
+   <li class ="user_id">
+    <img src="user-icon.jpg"
+     width="50px" 
+     height ="50px" 
+     alt="Menu" 
+     class="user-icon" 
+     draggable="false"
+     onclick="toggleUser()">
+    <div id="userContent" class="dropdown-user">
+        
+       <a href="admin.html">Complaint Management</a>
+       <a href="admin_login.html">Logout</a>
+
+  </li>
+
+</ul>
+
+</div>
+
+
+<h1 style="color:rgb(102, 188, 102);text-align:center; padding:30px;">Admin Control Panel</h1>
+
+<div class="admin-service-sec">
+
+    <h2>Administration Services</h2>
+
+    <div class="admin-services-container">
+
+        <a href="admin.html" class="admin-service-link">
+            <div class="admin-service-box">
+
+                <h3>📋 Manage Complaints</h3>
+
+                <p>
+                    Access all complaints submitted by villagers,
+                    update complaint status, monitor complaint
+                    progress, review resolved and rejected cases,
+                    and maintain complaint records for efficient
+                    village administration.
+                </p>
+
+            </div>
+        </a>
+
+     <div class="admin-service-box">
+
+        <h3>📂 Project Management</h3>
+
+        <p>
+            Manage village development projects, add new projects,
+            update project progress, track completed works,
+            monitor ongoing activities, and maintain project
+            records for better planning and transparency.
+        </p>
+        <br>
+        <footer>Available Soon!</footer>
+    </div>
+
+    <div class="admin-service-box">
+
+        <h3>📢 Announcement Management</h3>
+
+        <p>
+            Create, edit, and manage village announcements,
+            publish important notices, share Gram Sabha updates,
+            inform citizens about government schemes, and keep
+            villagers updated with the latest information.
+        </p>
+        <br>
+         <footer>Available Soon!</footer>
+    </div>
+
+    </div>
+
+</div>
+<div class ='admin-Info-content' id="about_us">
+ <h2>About Us</h2>
+   <p>
+        The staff members of Lawa Gram Panchayat play a vital role in ensuring the smooth functioning of all 
+        administrative and developmental activities in the village. They are responsible for handling day-to-day operations, assisting citizens with their needs, 
+        maintaining records, and supporting the execution of government schemes and village-level projects. Each staff member works with dedication, discipline, and a strong 
+        sense of responsibility to ensure that every task is completed efficiently and on time.
+        Our staff acts as 
+        a bridge between the villagers and the Panchayat system, helping to resolve issues quickly and ensuring that complaints,
+         requests, and suggestions are properly recorded and forwarded to the concerned authorities. They actively participate in maintaining transparency and improving
+          communication so that every citizen receives proper support without delay. Their continuous effort helps in building trust and smooth coordination within the system.
+    </p>
+
+    <p>
+        In addition to administrative duties, the staff members also contribute to the overall development of the village by supporting awareness programs, digital services, cleanliness drives, 
+        and public welfare initiatives. They ensure that villagers are informed about new schemes, updates, and important announcements from the Panchayat. Their role is not limited to office work but extends to active
+         involvement in community development activities.
+        
+        Through teamwork, dedication, and accountability, the staff members help in creating an efficient governance system that supports the vision of a modern, clean, and well-managed village. Their commitment
+         strengthens the foundation of Lawa Gram Panchayat and ensures continuous progress for the benefit of all residents.
+    </p></div>
+
+    <div id ="Staff_mem"class = "staff_member">
+        <h1>Message for Our Staff</h1>
+        <p>Our dedicated staff members are committed to serving the residents of the village with honesty, responsibility, and transparency. Every complaint, suggestion, and request submitted through this portal is treated with importance and handled in a fair and timely manner. Our goal is to ensure that public services such as water supply, road maintenance, sanitation, electricity, street lighting, drainage, and other essential facilities are maintained efficiently for the welfare of the community.
+
+The staff works closely with the Gram Panchayat to verify complaints, monitor ongoing development projects, and provide updates to citizens whenever possible. We believe that effective communication between villagers and the Panchayat is the foundation of good governance. By using this portal, citizens can easily report issues, track progress, and contribute to the overall development of the village.
+
+We encourage every resident to provide accurate information while submitting complaints so that our team can respond quickly and effectively. Constructive feedback and suggestions are always welcome, as they help us improve our services and strengthen community participation.
+
+Our mission is to create a clean, safe, and well-developed village through teamwork, accountability, and the active involvement of every citizen. We sincerely thank all residents for their trust, cooperation, and continuous support in building a better future for our village.</p>
+    </div>
+
+<div class ='contact_info'>
+
+<div id ="ContactUS" class ="contact_head"><h3>Contact Information</h3></div>
+
+<p >
+    <b>Address :-</b> Gram Panchayat office Lawa,Lawa vilage, Nagpur, Maharashtra,India
+    <br><br>
+    <b>Pincode :-</b> 440023<br><br>
+    
+     <b>Contact Number :- +91 XXXXX XXXXX</b><br><br>
+
+    <b>Email :- xxxxteam@gmail.com</b><br><br>
+</p>
+
+<footer class = "foot">
+    © 2026 Lawa Gram Panchayat | Village Service Portal
+</footer>
+
+
+<script>
+// Check if user is logged in
+if (sessionStorage.getItem("loggedIn") !== "true") {
+    window.location.href = "admin_login.html";
+}
+
+let inactivityTimer;
+
+// Start/Reset timer
+function resetInactivityTimer() {
+
+    clearTimeout(inactivityTimer);
+
+    inactivityTimer = setTimeout(function () {
+
+        alert("You have been logged out due to 1 minute of inactivity.");
+
+        sessionStorage.removeItem("loggedIn");
+
+        window.location.href = "admin_login.html";
+
+    }, 60000); // 1 minute
+}
+
+// Detect user activity
+document.addEventListener("mousemove", resetInactivityTimer);
+document.addEventListener("keydown", resetInactivityTimer);
+document.addEventListener("click", resetInactivityTimer);
+document.addEventListener("scroll", resetInactivityTimer);
+document.addEventListener("touchstart", resetInactivityTimer);
+
+// Start timer on page load
+resetInactivityTimer();
+
+// Logout button
+function logout() {
+    sessionStorage.removeItem("loggedIn");
+    window.location.href = "admin_login.html";
+}
+</script>
+
+<script src="script.js">
+</script>
+
+<script>
+function toggleLanguage(){
+
+    document.getElementById("languageContent")
+            .classList.toggle("show-language");
+}
+
+document.addEventListener("click",function(e){
+
+    let language=document.querySelector(".language-menu");
+
+    if(language && !language.contains(e.target)){
+
+        document.getElementById("languageContent")
+                .classList.remove("show-language");
+    }
+
+});
+
+function translateLanguage(lang) {
+
+    let combo = document.querySelector(".goog-te-combo");
+
+    if (!combo) {
+        alert("Google Translator is not loaded yet.");
+        return;
+    }
+
+    combo.value = lang;
+    combo.dispatchEvent(new Event("change"));
+}
+</script>
+
+<script>
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+        {
+            pageLanguage: 'en',
+            includedLanguages: 'en,hi,mr'
+        },
+        'google_translate_element'
+    );
+}
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>

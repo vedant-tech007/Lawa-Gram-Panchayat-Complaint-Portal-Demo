@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Complaint dashboard </title>
+      <link rel="stylesheet" href="style.css">
+      <script>
+if (sessionStorage.getItem("loggedIn") !== "true") {
+    window.location.href = "admin_login.html";
+}
+</script>
+</head>
+
+<body>
+<!-- Header -->
+<div class="headline">
+    <h4>Lawa Village Service Portal</h4>
+
+    <div class="tools-container">
+
+       <div class="accessibility-menu">
+
+        <img src="accessibility-icon.png"
+         height ="30px" width ="30px" alt="Accessibility" class ="accessibility-icon"
+         draggable="false"
+         onclick="toggleAccessibility()">
+
+    <div id="accessibilityPanel" class="accessibility-panel">
+        <h3>Accessibility Tools</h3>
+
+        <div class="tool-grid">
+            <button
+            onclick="toggleContrast()">High Contrast</button>
+            <button 
+            onclick="toggleDarkMode()">Dark Mode</button>
+
+            <button
+            onclick="increaseText()">Increase Text</button>
+            <button
+            onclick="decreaseText()">Decrease Text</button>
+            <button
+            onclick="toggleSpacing()">Text Spacing</button>
+            <button
+            onclick="resetAccessibility()">Reset</button>
+        </div>
+    </div>
+
+</div>
+
+    </div>
+</div>
+    <!-- Navigation -->
+   <ul class="Mylinks">
+
+    <li>
+        <a href="admin_home.html">
+            <img src="support-icon.jpg" draggable="false" class="symbol" width="30" height="30">
+        </a>
+    </li>
+
+    <li class="datetim-item">
+        <div class="datetime" id="datetime">
+        </div>
+        </li>
+
+    <li class="menu">
+        <img src="menu-icon.jpg"draggable="false" width="40" height="40"
+             alt="Menu"
+             class="menu-icon"
+             onclick="toggleMenu()">
+
+        <div id="menuContent" class="dropdown-menu">
+            <a href="admin_home.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+        </div>
+    </li>
+
+     <li class ="user_id">
+    <img src="user-icon.jpg"draggable="false" width="50px" height ="50px" alt="Menu" class="user-icon" onclick="toggleUser()">
+    <div id="userContent" class="dropdown-user">
+        
+        <a href="admin.html">Complaint Management</a>
+        <a href="admin_login.html">Logout</a>
+
+  </li>
+
+</ul>
+
+</div>
+
+    <h1 style="color:rgb(102, 188, 102);text-align:center;padding:30px;">Complaint Dashboard</h1>
+
+    <div class ="search_complaint">
+         <input type="text"
+         id="complaintSearch"
+          placeholder="Search by ID, Name, Mobile, Ward/Aadhar, Date">
+    
+         <button onclick="searchComplaint()">
+           Search
+          </button>
+
+          <div id="searchMessage" class="search-message"></div>
+
+        <div id="searchPopup" class="search-popup">
+        ⚠ Please fill the search bar first.
+    </div>
+    
+     </div>
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Mobile</th>
+            <th>Ward/Aadhar No</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Complaint Submission Date</th>
+            <th>Status</th>
+        </tr>
+        <tbody id="complaintTableBody"></tbody>
+
+    </table>
+
+<div id="deleteModal" class="delete-modal">
+
+    <div class="delete-box">
+
+        <div class="delete-header">
+            Delete Complaint
+        </div>
+
+        <div class="delete-body">
+
+<b style="color:#dc3545;">⚠ Warning!</b>
+
+<br><br>
+
+You are about to permanently delete this complaint from the
+<b>Village Complaint Management System.</b>
+
+<br><br>
+
+Once deleted, all complaint details will be removed permanently and
+<strong>cannot be recovered.</strong>
+
+<br><br>
+
+Are you sure you want to continue?
+
+</div>
+        <div class="delete-footer">
+            <button class="cancel-btn"
+                    onclick="closeDeletePopup()">
+                Cancel
+            </button>
+
+            <button class="yes-btn"
+                    onclick="confirmDelete()">
+                Yes, Delete
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+
+let tbody = document.getElementById("complaintTableBody");
+
+complaints.forEach(function(c) {
+    tbody.innerHTML += `
+        <tr>
+            <td>${String(c.id).padStart(3, '0')}</td>
+            <td>${c.fullname}</td>
+            <td>${c.mobile}</td>
+            <td>${c.ward}</td>
+            <td>${c.category}</td>
+            <td>${c.description}</td>
+            <td>${c.date}</td>
+ <td>
+<select class ="status-dropdown"
+    id="status${c.id}"
+    data-current="${c.status}"
+    onchange="enableUpdateButton(${c.id})">
+
+        <option value="Pending" ${c.status=="Pending"?"selected":""}>
+            Pending
+        </option>
+
+        <option value="Resolved" ${c.status=="Resolved"?"selected":""}>
+            Resolved
+        </option>
+
+        <option value="Rejected" ${c.status=="Rejected"?"selected":""}>
+            Rejected
+        </option>
+
+    </select>
+
+    <button
+        id="updateBtn${c.id}"
+        class="update-btn"
+        onclick="updateStatus(${c.id})"
+        disabled>
+        Update
+    </button>
+
+    <button
+        id="deleteBtn${c.id}"
+        class="delete-btn"
+        onclick="showDeletePopup(${c.id})"
+        style="${c.status=='Resolved' || c.status=='Rejected'
+            ? ''
+            : 'display:none;'}">
+        Delete
+    </button>
+
+</td>
+        </tr>
+    `;
+});
+
+function updateStatus(id) {
+
+    let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+
+    let select = document.getElementById("status" + id);
+    let newStatus = select.value;
+
+    complaints.forEach(function(c) {
+        if (c.id == id) {
+            c.status = newStatus;
+        }
+    });
+
+    localStorage.setItem("complaints", JSON.stringify(complaints));
+
+    // Update the saved status
+    select.setAttribute("data-current", newStatus);
+
+    // Disable Update button
+    document.getElementById("updateBtn" + id).disabled = true;
+
+    // Show or hide Delete button
+    let deleteBtn = document.getElementById("deleteBtn" + id);
+
+    if (newStatus === "Resolved" || newStatus === "Rejected") {
+        deleteBtn.style.display = "inline-block";
+    } else {
+        deleteBtn.style.display = "none";
+    }
+
+    alert("Complaint status updated successfully.");
+}
+
+function enableUpdateButton(id) {
+
+    let select = document.getElementById("status" + id);
+    let button = document.getElementById("updateBtn" + id);
+
+    let currentStatus = select.getAttribute("data-current");
+
+    button.disabled = (select.value === currentStatus);
+
+}
+
+// Check if user is logged in
+if (sessionStorage.getItem("loggedIn") !== "true") {
+    window.location.href = "admin_login.html";
+}
+
+let inactivityTimer;
+
+// Start/Reset timer
+function resetInactivityTimer() {
+
+    clearTimeout(inactivityTimer);
+
+    inactivityTimer = setTimeout(function () {
+
+        alert("You have been logged out due to 1 minute of inactivity.");
+
+        sessionStorage.removeItem("loggedIn");
+
+        window.location.href = "admin_login.html";
+
+    }, 60000); // 1 minute
+}
+
+// Detect user activity
+document.addEventListener("mousemove", resetInactivityTimer);
+document.addEventListener("keydown", resetInactivityTimer);
+document.addEventListener("click", resetInactivityTimer);
+document.addEventListener("scroll", resetInactivityTimer);
+document.addEventListener("touchstart", resetInactivityTimer);
+
+// Start timer on page load
+resetInactivityTimer();
+
+// Logout button
+function logout() {
+    sessionStorage.removeItem("loggedIn");
+    window.location.href = "admin_login.html";
+}
+</script>
+<script src="script.js"></script>
+</body>
+</html>

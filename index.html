@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<!-- Header -->
+<div class="headline">
+    <h4>Lawa Village Service Portal</h4>
+
+    <div class="tools-container">
+
+       <!-- Google Translator -->
+     <div id="google_translate_element" style="display:none;"></div>
+
+    <div class="language-menu">
+
+    <img src="translate-icon.png"
+         class="language-icon"
+         width="32"
+         height="32"
+         alt="Language"
+         draggable="false"
+         onclick="toggleLanguage()">
+
+    <div id="languageContent" class="dropdown-language">
+
+        <a href="#" onclick="translateLanguage('en')">English</a>
+        <a href="#" onclick="translateLanguage('hi')">Hindi</a>
+        <a href="#" onclick="translateLanguage('mr')">Marathi</a>
+
+    </div>
+
+</div>
+
+       <div class="accessibility-menu">
+
+        <img src="accessibility-icon.png"
+         height ="30px" 
+         width ="30px" 
+         alt="Accessibility" 
+         class ="accessibility-icon"
+         draggable="false"
+         onclick="toggleAccessibility()">
+
+    <div id="accessibilityPanel" class="accessibility-panel">
+        <h3>Accessibility Tools</h3>
+
+        <div class="tool-grid">
+            <button
+            onclick="toggleContrast()">High Contrast</button>
+            <button 
+            onclick="toggleDarkMode()">Dark Mode</button>
+
+            <button
+            onclick="increaseText()">Increase Text</button>
+            <button
+            onclick="decreaseText()">Decrease Text</button>
+            <button
+            onclick="toggleSpacing()">Text Spacing</button>
+            <button
+            onclick="resetAccessibility()">Reset</button>
+        </div>
+    </div>
+
+</div>
+
+    </div>
+</div>
+    <!-- Navigation -->
+    <ul class='Mylinks'>
+    <li><a href="index.html"><img src="support-icon.jpg" 
+         class ="symbol"
+         width ="30px"
+         height ="30px"
+         draggable ="false">
+        </a></li>
+
+    <li class ="search-item">
+    <input type ="text" id ="searchBox" placeholder ="Search" class ="search-text"
+    onkeydown="if(event.key==='Enter') searchPage()">
+
+    <div id="popupMessage" class="popup-message"></div>
+
+    <div class="category-dropdown">
+
+    <button class="category-btn">All Categories ▼</button>
+
+    <div class="category-content">
+        <a href="complaint.html">Complaint Portal</a>
+        <a href="Project.html">Projects</a>
+        <a href="Announcement.html">Anouncement</a>
+    </div>
+</div>
+
+    <button class ="search-btn"
+    onclick="searchPage()">Search</button></li>
+    
+    <li class ="menu">
+    <img src="menu-icon.jpg" 
+    width="40px" 
+    height ="40px"
+    alt="Menu" 
+    class="menu-icon"
+    draggable="false"
+    onclick="toggleMenu()">
+    <div id="menuContent" class="dropdown-menu">
+        
+        <a href="#about_us">About Us</a>
+        <a href="#Staff_mem">Staff Members</a>
+        <a href="dashboard.html">Dashboard</a>
+        
+  </li>
+
+   <li class ="user_id">
+    <img src="user-icon.jpg"
+     width="50px" 
+     height ="50px" 
+     alt="Menu" 
+     class="user-icon" 
+     draggable="false"
+     onclick="toggleUser()">
+    <div id="userContent" class="dropdown-user">
+        
+       <a href="index.html">Home</a>
+       <a href="admin_login.html">Admin login</a>
+
+  </li>
+
+</ul>
+
+</div>
+
+
+<!-- Home Content -->
+
+<!-- Home Content -->
+<section class='home-content'>
+<div class ="fbox">
+    <h1>Welcome to Lawa Gram Panchayat</h1>
+
+    <p>
+        Welcome to the official website of Lawa Gram Panchayat.
+        This portal is created to connect villagers with Panchayat services in a simple and transparent way.
+        Our aim is to provide important information, solve public complaints quickly,
+        and support the overall development of the village through digital technology.
+    </p>
+
+    <p>
+        Lawa Gram Panchayat continuously works for the welfare of the people by improving village infrastructure,
+        sanitation, water supply, roads, streetlights, and public services.
+        Through this website, villagers can stay informed about government schemes,
+        village meetings, notices, and ongoing development projects.
+    </p>
+</div>
+<div class ='sbox'>
+    <h2>Our Vision</h2>
+
+<p>
+    Our vision is to build a clean, educated, digitally connected,
+    and self-reliant village where every citizen gets equal opportunities and better public services.
+    We aim to encourage transparency, public participation, and sustainable rural development.
+
+    Lawa Gram Panchayat dreams of creating a modern village that preserves its cultural values
+    while adopting new technology for faster communication and improved administration.
+    We want every villager to have access to quality education, healthcare, sanitation,
+    clean drinking water, proper roads, and a safe environment.
+
+    Our goal is to strengthen unity among villagers and motivate citizens to actively participate
+    in village development activities. Through teamwork and responsible governance,
+    we aim to make Lawa village a model village for future generations.
+</p>
+</div>
+
+    <!-- Services Section -->
+     <div id = "services" class="service-sec">
+    <h2>Services Available on the Portal</h2>
+
+    <div class="services-container">
+
+        <a href="complaint.html" class ="service-link">
+            <div class="service-box">
+            <h3>Online Complaint Portal</h3>
+
+            <p>
+                Submit complaints related to roads, water supply,
+                sanitation, electricity, and public services.
+            </p><br><br><br>
+        </div></a>
+
+        <div class="service-box">
+            <h3>Village Announcements</h3>
+
+            <p>
+                Stay informed about Gram Sabha meetings,
+                notices, and village development updates.<br><br>
+            </p>
+            <footer>Available soon</footer>
+        </div>
+
+        <div class="service-box">
+            <h3>Development Projects</h3>
+
+            <p>
+                View details of ongoing and completed
+                village development projects.
+            </p><br>
+            <footer>Available soon</footer>
+        </div>
+
+    </div>
+</div>
+
+
+<div class = 'tbox' >
+    <h2>Message from Gram Panchayat</h2>
+
+    <p>Welcome to the Lawa Village Service Portal. 
+Our Gram Panchayat is committed to improving village development,
+maintaining cleanliness, providing better public services,
+and solving citizens’ problems efficiently.
+
+This portal is created to make communication between villagers
+and the Panchayat easier, faster, and more transparent.
+We encourage every citizen to actively participate in village
+development activities and help us build a cleaner,
+safer, and smarter village for future generations.
+
+Together, we can make Lawa village stronger and more developed.
+    </p></div>
+
+<div class ='Info-content' id="about_us">
+ <h2>About Us</h2>
+  <p>
+    Lawa Gram Panchayat is dedicated to serving the villagers with honesty,
+    transparency, and responsibility. Our Panchayat works continuously for the
+    development and welfare of the village by improving public facilities,
+    maintaining cleanliness, and supporting social and economic growth.
+
+    This Village Complaint Management System is created to make communication
+    between villagers and the Panchayat easier and faster. Through this portal,
+    citizens can register complaints, view important notices, learn about government
+    schemes, and stay updated about village development projects.
+
+    Our Panchayat focuses on improving roads, water supply, sanitation,
+    streetlights, education awareness, and digital services for villagers.
+    We believe that technology can help rural communities become stronger,
+    more connected, and more efficient.
+
+    We encourage all villagers to actively participate in community development
+    activities and support efforts that help make Lawa village cleaner,
+    safer, and more developed for future generations.
+</p>
+<p>
+    We also aim to create better opportunities for future generations by promoting
+    education, digital awareness, environmental protection, and community participation.
+    Our Panchayat believes that the progress of a village depends on the unity,
+    responsibility, and active involvement of its people.
+
+    By working together, we can build a village that is modern, clean,
+    self-sufficient, and socially strong while preserving our traditions and values.
+    Lawa Gram Panchayat is committed to continuous improvement and public welfare
+    so that ever
+</p></div>
+
+<div id ="Staff_mem"class = "staff_member">
+        <h1>Staff Members</h1>
+        <p>The Staff Members page provides information about the officials and employees responsible for managing and resolving village complaints through the Village Complaint Management System. This section helps villagers identify the concerned staff members, their roles, and responsibilities within the Gram Panchayat administration. The page is designed to improve transparency, accountability, and communication between citizens and local authorities.
+
+Each staff member is assigned specific duties related to public services such as water supply management, sanitation, electricity maintenance, road development, health services, and complaint monitoring. Villagers can view staff details including names, designations, departments, and contact information to better understand whom to approach for specific issues. This system ensures smoother coordination and faster resolution of complaints while supporting efficient village administration and community development.</p>
+    </div>
+
+</section>
+<div class = mb3>
+<div class="counter-box">
+    <h1 id="member">0</h1>
+    <p>Total Members</p>
+</div>
+</div>
+
+<div class ='contact_info'>
+
+<div id ="ContactUS" class ="contact_head"><h3>Contact Information</h3></div>
+
+<p >
+    <b>Address :-</b> Gram Panchayat office Lawa,Lawa vilage, Nagpur, Maharashtra,India
+    <br><br>
+    <b>Pincode :-</b> 440023<br><br>
+    
+     <b>Contact Number :- +91 XXXXX XXXXX</b><br><br>
+
+    <b>Email :- xxxxteam@gmail.com</b><br><br>
+</p>
+
+<footer class = "foot">
+    © 2026 Lawa Gram Panchayat | Village Service Portal
+</footer>
+
+<script src="script.js"></script>
+
+<script>
+function toggleLanguage(){
+
+    document.getElementById("languageContent")
+            .classList.toggle("show-language");
+}
+
+document.addEventListener("click",function(e){
+
+    let language=document.querySelector(".language-menu");
+
+    if(language && !language.contains(e.target)){
+
+        document.getElementById("languageContent")
+                .classList.remove("show-language");
+    }
+
+});
+
+function translateLanguage(lang) {
+
+    let combo = document.querySelector(".goog-te-combo");
+
+    if (!combo) {
+        alert("Google Translator is not loaded yet.");
+        return;
+    }
+
+    combo.value = lang;
+    combo.dispatchEvent(new Event("change"));
+}
+</script>
+
+<script>
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+        {
+            pageLanguage: 'en',
+            includedLanguages: 'en,hi,mr'
+        },
+        'google_translate_element'
+    );
+}
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>

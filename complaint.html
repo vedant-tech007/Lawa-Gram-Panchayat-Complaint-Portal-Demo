@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- UTF-8 mhanje multilingual support (English, Hindi, Marathi sagla support karto) -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Mobile responsive banavnyasathi -->
+
+    <title>Gram Panchayat Lawa - Complaint Portal</title>
+    <!-- Website cha title browser tab madhye disel -->
+
+    <!-- Bootstrap CSS CDN link (prebuilt design library use keli ahe) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* Body background light blue color madhe set keli ahe */
+        body { 
+            background-color: #e6f2ff;
+        }
+
+        .bg-image{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            opacity:0.3;
+            z-index:-1;
+       }
+
+        .datetime {
+            position: fixed;
+            top: 10px;
+            right: 15px;
+
+            background: white;        /* white box */
+            color: #1ad01a;           /* green text */
+
+            padding: 8px 12px;
+            border-radius: 10px;
+
+            font-weight: bold;
+            font-size: 14px;
+
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            z-index: 9999;
+        }
+
+        /* Card header sathi custom blue style */
+        .card-header-blue { 
+            background-color: #1ad01a;
+            color: white;
+        }
+
+        /* Submit button sathi custom blue button */
+        .btn-blue { 
+            background-color: #1ad01a;
+            color: white;
+            border: none;
+        }
+
+        /* Button hover effect (mouse gelayvar color change hoto) */
+        .btn-blue:hover { 
+            background-color: #1ad01a;
+            color: white;
+        }
+
+        /* Input focus effect (click kelyavar blue glow yete) */
+        .input-blue:focus {
+            border-color: #1ad01a;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+        }
+
+        /* Success message initially hide keli ahe */
+        #successMessage { 
+            display: none;
+        }
+
+    </style>
+</head>
+
+<body>
+  <div class="datetime" id="datetime"></div>
+
+    <img src ="bg-image.jpg" alt="Background Image"
+    class="bg-image">
+
+    <div class="container mt-5 mb-5">
+        <!-- Bootstrap container (center layout sathi) -->
+
+        <div class="row justify-content-center">
+            <!-- Row center align -->
+
+            <div class="col-md-8 col-lg-6">
+                <!-- Responsive column size (mobile, laptop adjust hota) -->
+
+                <div class="card shadow-lg border-0 rounded-3" id="complaintCard">
+                    <!-- Main form card -->
+
+                    <div class="card-header card-header-blue text-center py-4 rounded-top">
+                        <!-- Header section -->
+                        <h2 class="mb-0 fw-bold">Gram Panchayat Lawa</h2>
+                        <p class="mb-0 mt-1">Complaint Registration Portal</p>
+                    </div>
+
+                    <div class="card-body p-4 bg-white">
+                        <!-- Form body section -->
+
+                        <form id ="complaintForm" 
+                        onsubmit ="showSuccess(event)">
+                            <!-- Form submit kelyavar JS function call hoto -->
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold text-primary">Full Name</label>
+                                <input type="text" name="fullname" class="form-control input-blue bg-light" placeholder="e.g. Ram" required>
+                                <!-- User name input -->
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold text-primary">Mobile Number</label>
+                                <input type="tel" name="mobile" class="form-control input-blue bg-light" pattern="[0-9]{10}" placeholder="10-digit mobile number" required>
+                                <!-- 10 digit mobile number validation -->
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold text-primary">Ward/Adhaar Number</label>
+                                <input type="number" name="ward_adh_no" class="form-control input-blue bg-light" placeholder="Enter your ward/adhaar number" required>
+                                <!-- Ward number input -->
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold text-primary">Issue Category</label>
+                                <select name="category" class="form-select input-blue bg-light" required>
+                                    <!-- Dropdown menu -->
+
+                                    <option value="" disabled selected>Select the type of issue...</option>
+                                    <option>Water Supply</option>
+                                    <option>Electricity & Street Lights</option>
+                                    <option>Roads & Drainage</option>
+                                    <option>Sanitation & Garbage Collection</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label fw-bold text-primary">Complaint Description</label>
+                                <textarea name="description" class="form-control input-blue bg-light" rows="4" placeholder="Describe your issue in detail..." required></textarea>
+                                <!-- Detailed complaint description -->
+                            </div>
+
+                            <button type="submit" class="btn btn-blue btn-lg w-100 fw-bold shadow-sm">
+                                Submit Complaint
+                            </button>
+                            <!-- Submit button -->
+                        </form>
+                    </div>
+                 </div>
+
+                 <div class="card shadow-lg border-0 rounded-3 text-center p-5 bg-white" id="successMessage">
+                    <!-- Success message card -->
+
+                    <div class="mb-4">
+                        <!-- Check icon SVG (success symbol) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="#0d6efd" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg>
+                    </div>
+
+                    <h3 class="text-primary fw-bold mb-3">Thank you so much!</h3>
+                    <h4 class="text-dark">Your complaint is registered.</h4>
+                    <p class="text-muted mt-3">
+                        Gram Panchayat Lava has received your submission and will review it shortly.
+                    </p>
+
+                     <button class="btn btn-outline-primary mt-4 fw-bold"
+                       onclick="window.location.href='complaint.html'">
+                       Submit Another Complaint
+                      </button>
+
+                    <!-- Page reload button -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+    function showSuccess(event) {
+    event.preventDefault();
+
+    const form = document.getElementById("complaintForm");
+
+    // Get old complaints
+    let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+
+    // Create new complaint
+    let complaint = {
+        id: complaints.length + 1,
+        fullname: form.fullname.value,
+        mobile: form.mobile.value,
+        ward: form.ward_adh_no.value,
+        category: form.category.value,
+        description: form.description.value,
+        date: new Date().toLocaleDateString(),
+        status: "Pending"
+    };
+
+    // Save to localStorage
+    complaints.push(complaint);
+    localStorage.setItem("complaints", JSON.stringify(complaints));
+
+    // Hide form
+    document.getElementById("complaintCard").style.display = "none";
+
+    // Show success message
+    document.getElementById("successMessage").style.display = "block";
+
+    window.scrollTo(0, 0);
+    }
+
+
+        function updateDateTime() {
+    let now = new Date();
+
+    let date = now.toLocaleDateString();
+    let time = now.toLocaleTimeString();
+
+    document.getElementById("datetime").innerHTML = date + " | " + time;
+ }
+
+setInterval(updateDateTime, 1000);
+updateDateTime();
+
+    </script>
+
+</body>
+</html>
