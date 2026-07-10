@@ -1165,10 +1165,12 @@ body{
 /* Header */
 
 .headline{
-    flex-direction:column;
-    text-align:center;
-    gap:10px;
-    padding:12px;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+    padding:8px 10px;
+    gap:5px;
 }
    .headline h4{
     width:100%;
@@ -1177,8 +1179,11 @@ body{
 }
 
 .tools-container{
-    justify-content:center;
-    flex-wrap:wrap;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap:4px;
+    flex-wrap:nowrap;
 }
 
 /* Navigation */
@@ -1202,12 +1207,6 @@ body{
     text-decoration:none;
     font-weight:lighter;
     font-size:13px;
-}
-
-.tools-container{
-    justify-content:center;
-    flex-wrap:nowrap;
-    gap:5px;
 }
 
 /* Search */
