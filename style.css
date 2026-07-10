@@ -1170,10 +1170,10 @@ body{
     gap:10px;
     padding:12px;
 }
-
-.headline h4{
-    font-size:13px;
+   .headline h4{
+    width:100%;
     text-align:left;
+    font-size:13px;
 }
 
 .tools-container{
