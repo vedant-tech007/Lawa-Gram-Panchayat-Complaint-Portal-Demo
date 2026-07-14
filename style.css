@@ -1165,17 +1165,17 @@ body{
 /* Header */
 
 .headline{
-    display:flex;
-    flex-direction:row;
-    justify-content:space-between;
-    align-items:center;
-    padding:8px 10px;
-    gap:5px;
+    flex-direction:column;
+    text-align:center;
+    gap:10px;
+    padding:12px;
 }
-   .headline h4{
-    width:100%;
-    text-align:left;
+
+.headline h4{
     font-size:13px;
+    text-align:left;
+    flex:1;
+    margin:0;
 }
 
 .tools-container{
@@ -1189,13 +1189,10 @@ body{
 /* Navigation */
 
 .Mylinks{
-     display:flex;
-    align-items:center;
-    flex-wrap:nowrap;
-    justify-content:flex-start;
-    gap:4px;
-    padding:6px;
-    overflow-x:auto;
+    flex-wrap:wrap;
+    justify-content:center;
+    padding:10px;
+    gap:10px;
 }
 
 .Mylinks li{
@@ -1215,54 +1212,36 @@ body{
 /* Search */
 
 .search-item{
-    order:2;
-    flex:1;
+    width:100%;
     display:flex;
+    flex-direction:row;
     align-items:center;
+    justify-content:center;
+    gap:5px;
+    flex-wrap:nowrap;
 }
 
-/* Search Text Box */
 .search-text{
-    width:30px;      /* decrease width */
-    height:150px;
-    padding:2px 5px;
-    font-size:10px;
-    border-radius:12px;
+    width:160px;
+    font-size:13px;
+    padding:4px 8px;
 }
 
-/* All Categories Button */
-.category-btn{
-    width:30px;
-    height:20px;
-    padding:2px 4px;
-    font-size:10px;
-    border-radius:12px;
-}
-
-/* Search Button */
-.search-btn{
-    height:20px;
-    padding:2px 5px;
-    font-size:10px;
-    border-radius:12px;
-    margin-left:2px;
-}
-
-
-.menu{
-    order:5;
-    margin-left:2px;
-}
-
-.user_id{
-     width:22px;
-    height:22px;
-    cursor:pointer;
-    border-radius:50%;
-}
-    
 .category-dropdown{
-    width:25px;
+    width:100%;
+}
+
+.category-btn{
+    width:auto;
+    padding:4px 8px;
+    font-size:13px;
+}
+
+.search-btn{
+    width:auto;
+    margin-left:0;
+    padding:4px 8px;
+    font-size:13px;
 }
 
 /* Home */
@@ -1427,8 +1406,7 @@ table td{
 .menu-icon{
     width:22px;
     height:22px;
-    cursor:pointer;
-    border-radius:50%;
+    padding:3px;
 }
 
 /* Images */
@@ -1450,6 +1428,12 @@ h2{
 
 h3{
     font-size:18px;
+}
+
+.user-icon{
+    width:22px;
+    height:22px;
+    padding:3px;
 }
 
 .language-icon{
